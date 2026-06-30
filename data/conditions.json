@@ -1,0 +1,13 @@
+{
+  "diabetes": {
+    "max_glycemic_index": 55
+  },
+
+  "weight_gain": {
+    "min_calories": 150
+  },
+
+  "muscle_building": {
+    "min_protein": 15
+  }
+}

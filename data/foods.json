@@ -1,0 +1,36 @@
+{
+  "oats": {
+    "calories": 389,
+    "protein": 16.9,
+    "fiber": 10.6,
+    "glycemic_index": 55
+  },
+
+  "egg": {
+    "calories": 155,
+    "protein": 13,
+    "fiber": 0,
+    "glycemic_index": 0
+  },
+
+  "almonds": {
+    "calories": 579,
+    "protein": 21,
+    "fiber": 12.5,
+    "glycemic_index": 0
+  },
+
+  "banana": {
+    "calories": 89,
+    "protein": 1.1,
+    "fiber": 2.6,
+    "glycemic_index": 51
+  },
+
+  "cake": {
+    "calories": 350,
+    "protein": 4,
+    "fiber": 1,
+    "glycemic_index": 75
+  }
+}
