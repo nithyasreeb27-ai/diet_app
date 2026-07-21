@@ -1,13 +1,60 @@
-{
-  "diabetes": {
-    "max_glycemic_index": 55
+[
+  {
+    "id":"C001",
+    "name":"Diabetes",
+    "description":"Low GI and high fiber foods.",
+    "rules":[
+      {"field":"glycemic_index","operator":"<=","value":55},
+      {"field":"fiber","operator":">=","value":2}
+    ]
   },
-
-  "weight_gain": {
-    "min_calories": 150
+  {
+    "id":"C002",
+    "name":"Weight Gain",
+    "description":"High calorie foods.",
+    "rules":[
+      {"field":"calories","operator":">=","value":150}
+    ]
   },
-
-  "muscle_building": {
-    "min_protein": 15
+  {
+    "id":"C003",
+    "name":"Muscle Building",
+    "description":"High protein foods.",
+    "rules":[
+      {"field":"protein","operator":">=","value":15}
+    ]
+  },
+  {
+    "id":"C004",
+    "name":"Weight Loss",
+    "description":"Low calorie foods.",
+    "rules":[
+      {"field":"calories","operator":"<=","value":200},
+      {"field":"fiber","operator":">=","value":2}
+    ]
+  },
+  {
+    "id":"C005",
+    "name":"Iron Deficiency",
+    "description":"Iron rich foods.",
+    "rules":[
+      {"field":"iron","operator":">=","value":2}
+    ]
+  },
+  {
+    "id":"C006",
+    "name":"Bone Health",
+    "description":"Calcium rich foods.",
+    "rules":[
+      {"field":"calcium","operator":">=","value":100}
+    ]
+  },
+  {
+    "id":"C007",
+    "name":"Heart Health",
+    "description":"Low fat foods.",
+    "rules":[
+      {"field":"fat","operator":"<=","value":10}
+    ]
   }
-}
+]
