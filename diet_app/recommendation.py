@@ -131,8 +131,6 @@ def recommend_foods(foods, conditions, selected_conditions):
 
     for condition_name in selected_conditions:
 
-        print(f"\n{condition_name}: Valid Entry")
-
         # Find the selected condition
         condition_data = None
 
