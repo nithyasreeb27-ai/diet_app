@@ -90,36 +90,53 @@ def get_user_choice(conditions):
 
         print("\nPlease try again.") # it works only if the entry is invalid
 
-# -------------------------
-# FOOD_MATCHES_RULE
-# -------------------------
+def evaluate_food(food, rules):
+    """Check a food against rules and return the verdict with the reasons."""
 
-def food_matches_rules(food, rules):
-    
+    failed = []
+
     for rule in rules:
 
         field = rule["field"]
         operator = rule["operator"]
         value = rule["value"]
 
-        food_value = food[field]
+        # None means "we don't have this nutrient for this food"
+        actual = food.get(field)
 
-        if operator == ">=":
+        if actual is None:
+            passed = False
 
-            if food_value < value:
-                return False
+        elif operator == ">=":
+            passed = actual >= value
 
         elif operator == "<=":
-
-            if food_value > value:
-                return False
+            passed = actual <= value
 
         elif operator == "==":
+            passed = actual == value
 
-            if food_value != value:
-                return False
+        else:
+            raise ValueError(f"Unknown operator: {operator}")
 
-    return True
+        if not passed:
+            failed.append(
+                {
+                    "field": field,
+                    "operator": operator,
+                    "value": value,
+                    "actual": actual,
+                }
+            )
+
+    return {"allowed": len(failed) == 0, "failed": failed}
+
+# -------------------------
+# FOOD_MATCHES_RULE
+# -------------------------
+
+def food_matches_rules(food, rules):
+    return evaluate_food(food, rules)["allowed"]
 
 # -------------------------
 # RECOMMENDATION
@@ -127,25 +144,23 @@ def food_matches_rules(food, rules):
 
 def recommend_foods(foods, conditions, selected_conditions):
 
+    conditions_by_name = {c["name"]: c for c in conditions}
+
     recommendations = []
 
     for condition_name in selected_conditions:
 
-        # Find the selected condition
-        condition_data = None
+        condition_data = conditions_by_name.get(condition_name)
 
-        for condition in conditions:
-
-            if condition["name"] == condition_name:
-                condition_data = condition
-                break
+        if condition_data is None:
+            raise ValueError(f"Unknown condition: {condition_name}")
 
         recommended_foods = []
 
         # Check every food
         for food in foods:
 
-            if food_matches_rules(food,condition_data["rules"]):
+            if food_matches_rules(food, condition_data["rules"]):
 
                 recommended_foods.append(food)
 
